@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Order Successful</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.order-success-container {
+    text-align: center;
+    background: #fff;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4caf50;
+    color: white;
+    border-radius: 50%;
+    font-size: 36px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #4caf50;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background: #4caf50;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #45a049;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        </style>
+    </head>
+    <body>
+      <div class="order-success-container">
+        <div class="success-icon">
+            <span>&#10003;</span>
+        </div>
+        <h1>Thank You!</h1>
+        <p>Your order has been placed Successfully.</p>
+        <p>We are processing your order and will update you shortly.</p>
+        <a href="{% url 'products' %}" class="btn">Return to products</a>
+        
+    </body>
+</html>

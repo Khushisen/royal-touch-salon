@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Order Confirmation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                font-family: Arial,sans-serif;
+                background-color: #f5f5f5;
+                margin : 0;
+                padding : 0;
+            }
+            .container{
+                max-width : 600px;
+                margin:50px auto;
+                padding: 20px;
+                background: white;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                border-radius: 8px;
+            }
+            h2{
+                font-size: 1.8em;
+                margin-bottom:20px;
+                text-align:center;
+                color: #333;
+            }
+            form{
+                display:flex;
+                flex-direction:column;
+            }
+            label{
+                font-size:1em;
+                margin-bottom: 5px;
+                color : #555;
+            }
+            input,textarea{
+                padding:10px;
+                margin-bottom:20px;
+                border : 1px solid #ccc;
+                border-radius:5px;
+                font-size:1em;
+                width:100%;
+                box-sizing: border-box;
+            }
+            textarea{
+                resize:none;
+                height:100px;
+            }
+            button{
+                padding:12px;
+                font-size:1em;
+                background-color: #007bff;
+                color:white;
+                border:none;
+                border-radius:5px;
+                cursor:pointer;
+                transition: background-color 0.3s ease;
+            }
+            button:hover{
+                background-color:#0056b3;
+            }
+            .back-link{
+                display:block;
+                text-align:center;
+                margin-top:20px;
+                text-decoration:none;
+                color:#007bff;
+            }
+            .back-link:hover{
+                text-decoration:underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <h2>Confirm your order</h2>
+        <form method="post" action="{% url 'order_success' %}">
+            {% csrf_token %}
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" placeholder="Enter delivery address only inside of kota city" required></textarea>
+
+            <label for="additional-info">Additional Information (Optional):</label>
+            <textarea id="additional-info" name="additional_info" placeholder="Any additional instructions..."></textarea>
+
+            <button type="submit" id="pay-btn">Confirm Order and pay</button>
+        </form>
+        <a href="{% url 'products' %}" class="back-link">Back to Products</a>
+    </div>
+    </body>
+
+<!-- Razorpay's Javascript code. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    
+    key: "{{ razorpay_merchant_key }}", 
+    amount: "{{ razorpay_amount }}", 
+    currency: "{{ currency }}",
+    name: "The Royal Touch Salon", 
+    
+    order_id: "{{ razorpay_order_id }}", 
+    callback_url: "{{ callback_url }}",
+  };
+  
+ 
+  var rzp1 = new Razorpay(options);
+  
+ 
+  document.getElementById("pay-btn").onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  };
+</script>
+
+</html>
