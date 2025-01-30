@@ -64,7 +64,7 @@ def services(request):
     return render(request,'services.html')
     
 def about(request):
-    return render(request,'about.html')
+    return render(request,'about.html',{'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY})
 
 def gallery(request):
     return render(request,'gallery.html')
@@ -82,7 +82,7 @@ def contact(request):
             return redirect('contact')
     else:
         form=ContactForm()
-    return render(request,'contact.html',{'form':form})
+    return render(request,'contact.html',{'form':form,'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY})
 
 
 
